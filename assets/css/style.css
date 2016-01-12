@@ -1,0 +1,23 @@
+#loginModal{
+    margin: auto;
+    width: 25em;
+}
+.btn-success {
+    margin-top: 1.5em;
+}
+.btn-primary{
+    margin-top: 1.5em;
+}
+.control-label {
+    margin-bottom: 0;
+    padding-top: 7px;
+}
+.signref{
+    margin: 2em;
+    position: fixed;
+}
+
+/*.control-group{
+    display: block;
+    text-align: center;
+}*/
