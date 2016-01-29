@@ -1,60 +1,60 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") OR exit("No direct script access allowed");
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
-        <link rel="stylesheet" href="<?php echo base_url("assets/css/style.css"); ?>" />
+        <title>Sign In</title>
+        <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>"/>
+        <link rel="stylesheet" href="<?php echo base_url("/assets/css/style.css"); ?>"/>
     </head>
     <body>
-        <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.3.min.js"); ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
-
         <div class="" id="loginModal">
             <div class="modal-header">
-                <div style="color: red">
-                    <?= $this->session->flashdata('status'); ?>
-                    <?php $this->session->unset_userdata('status'); ?>   
-                </div>
+                <?php if (isset($text)) { ?>
+                    <div style="color: red">
+                        <?php echo $text ?>
+                    </div>
+                <?php } ?>
             </div>
             <div class="modal-body">
                 <div class="well">
-                    <?= form_open('login/signupUser', array('id' => 'tab')); ?>
+                    <?php echo form_open("login/registrationUser", ["id" => "tab"]); ?>
                     <div id="legend">
-                        <legend class="">Регистрация</legend>
+                        <legend class="">Sign Up</legend>
                     </div> 
-
                     <div class="control-group">
-                        <?= form_label('Логин', 'lblUsername', array('class' => 'control-label', 'for' => "tabUsername")); ?>
-                        <?= form_error('tabUsername'); ?>
+                        <?php echo form_label("Username", "lblUsername", ["class" => "control-label", "for" => "tabUsername"]); ?>
+                        <?php echo form_error("tabUsername"); ?>
                         <div class="controls">
-                            <?= form_input('tabUsername', '', array('class' => 'input-xlarge')); ?>
+                            <?php echo form_input("tabUsername", "", ["class" => "input-xlarge"]); ?>
                         </div>
                     </div>
                     <div class="control-group">
 
-                        <?= form_label('Пароль', 'lblPassword', array('class' => 'control-label', 'for' => "tabPassword")); ?>
-                        <?= form_error('tabPassword'); ?>
+                        <?php echo form_label("Password", "lblPassword", ["class" => "control-label", "for" => "tabPassword"]); ?>
+                        <?php echo form_error("tabPassword"); ?>
                         <div class="controls">
-                            <?= form_password('tabPassword', '', array('class' => 'input-xlarge')); ?>
+                            <?php echo form_password("tabPassword", "", ["class" => "input-xlarge"]); ?>
                         </div>
                     </div>
                     <div class="control-group">
-
-                        <?= form_label('Email', 'lblEmail', array('class' => 'control-label', 'for' => "tabEmail")); ?>
-                        <?= form_error('tabEmail'); ?>
+                        <?php echo form_label("Email", "lblEmail", ["class" => "control-label", "for" => "tabEmail"]); ?>
+                        <?php echo form_error("tabEmail"); ?>
                         <div class="controls">
-                            <?= form_input('tabEmail', '', array('class' => 'input-xlarge')); ?>
+                            <?php echo form_input("tabEmail", "", ["class" => "input-xlarge"]); ?>
                         </div>
                     </div>
                     <div>
-                        <?= form_submit('sub', 'Создать аккаунт', array('class' => 'btn btn-primary')); ?>
-                        <a  class='signref' href="<?= site_url('login/index'); ?>">или Войти</a> 
+                        <?php echo form_submit("sub", "Create", ["class" => "btn btn-primary"]); ?>
+                        <a  class="signref" href="<?php echo site_url("login/index"); ?>">Sign In</a> 
                     </div>
-                    <?= form_close(); ?>
-
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.3.min.js"); ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>">></script>
+    </body>
+</html>

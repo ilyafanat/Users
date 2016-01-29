@@ -19,11 +19,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <tbody>
                         <?php for ($i = 0; $i < count($logins); ++$i) { ?>
                             <tr>
-                                <td><?= ($i + 1); ?></td>
-                                <td><?= $logins[$i]['login']; ?></td>
-                                <td><?= long2ip($logins[$i]['ip']); ?></td>
-                                <td><?= $logins[$i]['email']; ?></td>
-                                <td><?= $logins[$i]['last_activity'];; ?></td>
+                                <td><?php echo ($i + 1); ?></td>
+                                <td><?php echo $logins[$i]['login']; ?></td>
+                                <td><?php echo long2ip($logins[$i]['ip']); ?></td>
+                                <td><?php echo $logins[$i]['email']; ?></td>
+                                <td><?php echo $logins[$i]['last_activity'];; ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
