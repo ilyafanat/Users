@@ -69,10 +69,10 @@ class Login extends CI_Controller {
             $this->form_validation->set_error_delimiters('<div class = "text-danger">', '</div>');
             $this->load->view('login');
         } else {
-            $user_login_data = array(
+            $user_login_data = [
                 'login' => $this->db->escape($this->input->post('username', true)),
                 'password' => $this->db->escape($this->input->post('password'))
-            );
+            ];
             $this->load->model('Users');
             $login_data = $this->Users->checkUserLogin($user_login_data['login']);
             if (!empty($login_data)) {
@@ -84,12 +84,15 @@ class Login extends CI_Controller {
                 );
                 $temp_password = $this->encryption->decrypt($login_data[0]['password']);
                 if ($user_login_data['password'] === $temp_password) {
-                    $ipTimeData = array(
+                    $time_data = [
                         'ip' => ip2long($this->input->server('REMOTE_ADDR')),
-                        'last_activity' => date('Y-m-d H:i:s')
-                    );
-                    $this->Users->setLastLoginTime($user_login_data['login'], $ipTimeData);
-                    $this->load->view('lastLogin');
+                        'last_login' => date('Y-m-d H:i:s'),
+                        'id_user' => $login_data[0]['id']
+                    ];
+                    $this->Users->setLastLoginTime($time_data);
+                    $arr = $this->Users->getUserTime();
+                    print_r($arr);
+//                    $this->load->view('lastLogin', $arr);
                 } else {
                     $message = [
                         'text' => 'wrong password'
