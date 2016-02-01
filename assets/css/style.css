@@ -1,23 +1,31 @@
-#loginModal{
+@media screen and (min-width: 768px) {
+    body {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .container {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+#loginModal {
     margin: auto;
     width: 25em;
 }
 .btn-success {
     margin-top: 1.5em;
 }
-.btn-primary{
+.btn-primary {
     margin-top: 1.5em;
 }
 .control-label {
     margin-bottom: 0;
     padding-top: 7px;
 }
-.signref{
+.signref {
     margin: 2em;
     position: fixed;
 }
-
-/*.control-group{
-    display: block;
-    text-align: center;
-}*/
