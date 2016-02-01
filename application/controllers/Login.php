@@ -8,6 +8,10 @@ class Login extends CI_Controller {
         parent::__construct();
     }
 
+    private function getUserLoginTime() {
+        
+    }
+
     public function index() {
         if ($this->session->userdata('logged_in')) {
             $this->load->model("Users");
@@ -116,12 +120,9 @@ class Login extends CI_Controller {
 
     public function logoutUser() {
         $this->load->model("Users");
-        if ($this->Users->setLogoutTime(date("Y-m-d H:i:s"), $this->session->userdata('logged_in')["id_time"])) {
-            $this->session->sess_destroy();
-            redirect('login', 'index');
-        } else {
-            
-        }
+        $this->Users->setLogoutTime(date("Y-m-d H:i:s"), $this->session->userdata('logged_in')["id_time"]);
+        $this->session->sess_destroy();
+        redirect('login', 'index');
     }
 
 }

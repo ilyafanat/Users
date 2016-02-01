@@ -4,7 +4,7 @@ defined("BASEPATH") OR exit("No direct script access allowed");
 
 class Users extends CI_Model {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -34,7 +34,7 @@ class Users extends CI_Model {
         return $this->db->where("login", $login)->get("user")->result();
     }
 
-    function setLogoutTime($time, $id) {
+    public function setLogoutTime($time, $id) {
         return $this->db->set("logout_time", $time)
                         ->where("id", $id)
                         ->update("time");
