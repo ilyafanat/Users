@@ -2,7 +2,7 @@
 Создать бд Users, в ней таблицу user
 
 CREATE TABLE `user` ( <br/>
-  `id` int(10) unsigned NOT NULL,<br/>
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,<br/>
   `login` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
   `password` varchar(172) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
   `email` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
