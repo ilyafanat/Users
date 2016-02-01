@@ -1,14 +1,22 @@
 # Users
 Создать бд Users, в ней таблицу user
 
-CREATE TABLE `user` (
-	`id` TINYINT(4) NOT NULL AUTO_INCREMENT,
-	`login` VARCHAR(40) NOT NULL,
-	`password` VARCHAR(50) NOT NULL,
-	`email` VARCHAR(100) NOT NULL,
-	`ip` INT(11) NOT NULL,
-	`last_activity` DATETIME NOT NULL,
-	PRIMARY KEY (`id`)
-)
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB;
+CREATE TABLE `user` ( <br/>
+  `id` int(10) unsigned NOT NULL,<br/>
+  `login` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
+  `password` varchar(172) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
+  `email` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
+  PRIMARY KEY (`id`),<br/>
+  KEY `login` (`login`)<br/>
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;<br/>
+<br/>
+<br/>
+CREATE TABLE `time` (<br/>
+  `id` int(10) NOT NULL AUTO_INCREMENT,<br/>
+  `login_time` datetime DEFAULT NULL,<br/>
+  `id_user` int(10) unsigned NOT NULL DEFAULT '0',<br/>
+  `ip` int(11) DEFAULT '0',<br/>
+  PRIMARY KEY (`id`),<br/>
+  KEY `fk_time_1_idx` (`id_user`),<br/>
+  CONSTRAINT `fk_time_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE<br/>
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;<br/>
