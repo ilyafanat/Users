@@ -13,9 +13,10 @@ CREATE TABLE `user` ( <br/>
 <br/>
 CREATE TABLE `time` (<br/>
   `id` int(10) NOT NULL AUTO_INCREMENT,<br/>
-  `login_time` datetime DEFAULT NULL,<br/>
+  `login_time` datetime DEFAULT '0000-00-00 00:00:00',<br/>
   `id_user` int(10) unsigned NOT NULL DEFAULT '0',<br/>
   `ip` int(11) DEFAULT '0',<br/>
+  `logout_time` datetime DEFAULT '0000-00-00 00:00:00',<br/>
   PRIMARY KEY (`id`),<br/>
   KEY `fk_time_1_idx` (`id_user`),<br/>
   CONSTRAINT `fk_time_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE<br/>
