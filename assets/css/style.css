@@ -4,6 +4,10 @@
         margin-right: auto;
         width: 70%;
     }
+    .col-centered {
+        float: none;
+        margin: 0 auto;
+    }
 }
 @media screen and (max-width: 768px) {
     .container {

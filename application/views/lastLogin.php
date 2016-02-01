@@ -11,7 +11,7 @@ $this->load->view('header', $title);
                 <div class="pull-right">
                     <ul class="nav navbar-nav pull-right">
                         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Welcome, <?php echo $data[0]['login']; ?>
+                                Welcome, <?php echo $data['login']; ?>
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li class="divider"></li>
@@ -23,6 +23,9 @@ $this->load->view('header', $title);
             </div>
         </nav>
     </div>
+    <?php
+    print_r($data);
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">

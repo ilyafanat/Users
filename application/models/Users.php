@@ -8,20 +8,22 @@ class Users extends CI_Model {
         parent::__construct();
     }
 
-    public function getUserTime($id_user, $limit) {
-        return $this->db->select("*")->from("user")
-                        ->join("time", "user.id=time.id_user")
-                        ->where("user.id", $id_user)
+    public function getLoginTime($id_user, $limit) {
+        return $this->db->select("t.login_time, t.logout_time, t.ip")
+                        ->from("user as u")
+                        ->join("time t", "u.id=t.id_user")
+                        ->where("u.id", $id_user)
                         ->limit($limit)
-                        ->order_by("login_time", "desc")
-                        ->get()->result_array();
+                        ->order_by("t.login_time", "desc")
+                        ->get()
+                        ->result_array();
     }
 
-    public function checkUserLogin($login) {
-        return $this->db->where("login", $login)->get("user")->result_array();
+    public function getUserByLogin($login) {
+        return $this->db->get_where("user", ["login" => $login])->row();
     }
 
-    public function addUser($data) {
+    public function add($data) {
         return $this->db->insert("user", $data);
     }
 
