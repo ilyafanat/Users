@@ -15,6 +15,10 @@
         margin-right: 0;
     }
 }
+.header-message {
+    color: #ff0000; 
+    text-align: center;
+}
 #loginModal {
     margin: auto;
     width: 25em;
