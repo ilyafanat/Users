@@ -7,7 +7,7 @@ defined("BASEPATH") OR exit("No direct script access allowed");
             <div class="pull-right">
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Welcome, <?php echo $last_login_data[0]["login"]; ?>
+                            Welcome, <?php echo $username; ?>
                             <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="divider"></li>

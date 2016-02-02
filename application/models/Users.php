@@ -23,17 +23,13 @@ class Users extends CI_Model {
         return $this->db->get_where("user", ["login" => $login])->row(0, "Users");
     }
 
-    public function add($data) {
-        return $this->db->insert("user", $data);
+    public function add($user_data) {
+        return $this->db->insert("user", $user_data);
     }
 
     function setLoginTime($time_data) {
         $this->db->insert("time", $time_data);
         return $this->db->insert_id();
-    }
-
-    public function checkUserExist($login) {
-        return $this->db->where("login", $login)->get("user")->result();
     }
 
     public function setLogoutTime($time, $id) {
