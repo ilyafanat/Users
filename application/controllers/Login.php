@@ -17,6 +17,7 @@ class Login extends CI_Controller {
 
         if ($sessionLogedIn) {
             $loginTime["last_login_data"] = $this->Users->getLoginTime($sessionLogedIn["id"], limit);
+            $loginTime["username"] = $sessionLogedIn["login"];
             $template = "lastLogin";
         }
         $this->loadTemplateView($template, $loginTime);
@@ -119,6 +120,7 @@ class Login extends CI_Controller {
                     $this->session->set_userdata("logged_in", $logged_in);
 
                     $message["last_login_data"] = $this->Users->getLoginTime($login_data->id, limit);
+                    $message["username"] = $login_data->login;
                     $template = "lastLogin";
                 } else {
                     $message = [
