@@ -15,7 +15,7 @@ class Login extends CI_Controller
         $sessionLogedIn = $this->session->userdata("logged_in");
 
         if ($sessionLogedIn) {
-            $user_message_data["last_login_data"] = $this->Users->getLoginTime($sessionLogedIn["id"], limit);
+            $user_message_data["last_login_data"] = $this->Users->getLoginTime($sessionLogedIn["id"], LAST_LIMIT_LOGIN);
             $user_message_data["username"] = $sessionLogedIn["login"];
             $template = "lastLogin";
         }
@@ -31,13 +31,11 @@ class Login extends CI_Controller
     }
 
     public function index() {
-        $message = [];
-        $this->getUserLoginTime("loginForm", $message);
+        $this->getUserLoginTime("loginForm", []);
     }
 
     public function signupUser() {
-        $message = [];
-        $this->getUserLoginTime("signupForm", $message);
+        $this->getUserLoginTime("signupForm", []);
     }
 
     public function registrationUser() {
@@ -67,10 +65,10 @@ class Login extends CI_Controller
             if (empty($this->Users->getUserByLogin($user_signin_data["login"]))) {
                 $this->Users->add($user_signin_data);
                 $template = "loginForm";
-                $message["text"].=" succesfully registered";
+                $message["text"] .= " succesfully registered";
             } else {
                 $template = "signupForm";
-                $message["text"].= " already exist";
+                $message["text"] .= " already exist";
             }
         } else {
             $this->form_validation->set_error_delimiters("<div class='text-danger'>", "</div>");

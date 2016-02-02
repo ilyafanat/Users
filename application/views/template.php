@@ -1,9 +1,10 @@
 <?php
-if($view === "lastLogin") {
+
+if ($view === "lastLogin") {
     $title["title"] = "Last login time";
-}else if($view === "signupForm") {
+} else if ($view === "signupForm") {
     $title["title"] = "Signup User";
-}else {
+} else {
     $title["title"] = "Login User";
 }
 $this->load->view("header", $title);
