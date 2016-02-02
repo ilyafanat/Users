@@ -15,7 +15,7 @@ class Users extends CI_Model
                         ->join("time t", "u.id=t.id_user")
                         ->where("u.id", $id_user)
                         ->limit($limit)
-                        ->order_by("t.logged_at", "desc")
+                        ->order_by("t.logouted_at", "desc")
                         ->get()
                         ->result_array();
     }
