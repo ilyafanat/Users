@@ -73,7 +73,6 @@ class Login extends CI_Controller
                 $message["text"].= " already exist";
             }
         } else {
-
             $this->form_validation->set_error_delimiters("<div class='text-danger'>", "</div>");
             $template = "signupForm";
         }
