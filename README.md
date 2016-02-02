@@ -4,7 +4,7 @@
 CREATE TABLE `user` ( <br/>
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,<br/>
   `login` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
-  `password` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
+  `password` char(60) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
   `email` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL,<br/>
   PRIMARY KEY (`id`),<br/>
   KEY `login` (`login`)<br/>
