@@ -135,9 +135,7 @@ class Login extends CI_Controller {
 
     public function logoutUser() {
         $this->load->model("Users");
-        $this->Users->setLogoutTime(
-                date("Y-m-d H:i:s"), $this->session->userdata("logged_in")["id_time"]
-        );
+        $this->Users->setLogoutTime(date("Y-m-d H:i:s"), $this->session->userdata("logged_in")["id_time"]);
         $this->session->sess_destroy();
         redirect("login", "index");
     }
