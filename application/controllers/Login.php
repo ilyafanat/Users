@@ -124,12 +124,12 @@ class Login extends CI_Controller {
                     $template = "lastLogin";
                 } else {
                     $message = [
-                        "text" => "Wrong password"
+                        "error_text" => "Wrong password"
                     ];
                 }
             } else {
                 $message = [
-                    "text" => "User doesn't exist"
+                    "error_text" => "User doesn't exist"
                 ];
             }
         } else {

@@ -4,7 +4,7 @@ defined("BASEPATH") OR exit("No direct script access allowed");
 <div class="row">
     <div class="" id="loginModal col-md-4 col-xs-12">
         <div class="modal-header">
-            <?php if (isset($text)) : ?>
+            <?php if (isset($error_text)) : ?>
                 <div class="header-message">
                     <?php echo $text ?>
                 </div>
