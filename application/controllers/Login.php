@@ -19,10 +19,10 @@ class Login extends CI_Controller {
             $loginTime["last_login_data"] = $this->Users->getLoginTime($sessionLogedIn["id"], 5);
             $template = "lastLogin";
         }
-        $this->templateView($template, $loginTime);
+        $this->loadTemplateView($template, $loginTime);
     }
 
-    private function templateView($view, $sended_data) {
+    private function loadTemplateView($view, $sended_data) {
         $template = [
             "sended_data" => $sended_data,
             "view" => $view
@@ -75,7 +75,7 @@ class Login extends CI_Controller {
             $this->form_validation->set_error_delimiters("<div class='text-danger'>", "</div>");
             $template = "signupForm";
         }
-        $this->templateView($template, $message);
+        $this->loadTemplateView($template, $message);
     }
 
     public function loginUser() {
@@ -132,7 +132,7 @@ class Login extends CI_Controller {
         } else {
             $this->form_validation->set_error_delimiters("<div class = 'text-danger'>", "</div>");
         }
-        $this->templateView($template, $message);
+        $this->loadTemplateView($template, $message);
     }
 
     public function logoutUser() {
