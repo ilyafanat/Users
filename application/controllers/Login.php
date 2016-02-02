@@ -16,7 +16,7 @@ class Login extends CI_Controller {
         $sessionLogedIn = $this->session->userdata("logged_in");
 
         if ($sessionLogedIn) {
-            $loginTime["last_login_data"] = $this->Users->getLoginTime($sessionLogedIn["id"], 5);
+            $loginTime["last_login_data"] = $this->Users->getLoginTime($sessionLogedIn["id"], limit);
             $template = "lastLogin";
         }
         $this->loadTemplateView($template, $loginTime);
@@ -100,7 +100,8 @@ class Login extends CI_Controller {
             $login_data = $this->Users->getUserByLogin($user_login_data["login"]);
 
             if (!empty($login_data)) {
-                if (password_verify($user_login_data["password"], $login_data->password)) {
+                if (
+                        password_verify($user_login_data["password"], $login_data->password)) {
                     $time_data = [
                         "ip" => ip2long($this->input->server("REMOTE_ADDR")),
                         "logged_at" => date("Y-m-d H:i:s"),
@@ -117,7 +118,7 @@ class Login extends CI_Controller {
                     ];
                     $this->session->set_userdata("logged_in", $logged_in);
 
-                    $message["last_login_data"] = $this->Users->getLoginTime($login_data->id, 5);
+                    $message["last_login_data"] = $this->Users->getLoginTime($login_data->id, limit);
                     $template = "lastLogin";
                 } else {
                     $message = [
