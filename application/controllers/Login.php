@@ -8,19 +8,17 @@ class Login extends CI_Controller {
         parent::__construct();
     }
 
-    private function getUserLoginTime($template) {
+    private function getUserLoginTime($template, $user_message_data) {
         $this->load->model("Users");
-
-        $loginTime = [];
 
         $sessionLogedIn = $this->session->userdata("logged_in");
 
         if ($sessionLogedIn) {
-            $loginTime["last_login_data"] = $this->Users->getLoginTime($sessionLogedIn["id"], limit);
-            $loginTime["username"] = $sessionLogedIn["login"];
+            $user_message_data["last_login_data"] = $this->Users->getLoginTime($sessionLogedIn["id"], limit);
+            $user_message_data["username"] = $sessionLogedIn["login"];
             $template = "lastLogin";
         }
-        $this->loadTemplateView($template, $loginTime);
+        $this->loadTemplateView($template, $user_message_data);
     }
 
     private function loadTemplateView($view, $sended_data) {
@@ -32,11 +30,13 @@ class Login extends CI_Controller {
     }
 
     public function index() {
-        $this->getUserLoginTime("loginForm");
+        $message = [];
+        $this->getUserLoginTime("loginForm", $message);
     }
 
     public function signupUser() {
-        $this->getUserLoginTime("signupForm");
+        $message = [];
+        $this->getUserLoginTime("signupForm", $message);
     }
 
     public function registrationUser() {
@@ -101,27 +101,22 @@ class Login extends CI_Controller {
             $login_data = $this->Users->getUserByLogin($user_login_data["login"]);
 
             if (!empty($login_data)) {
-                if (
-                        password_verify($user_login_data["password"], $login_data->password)) {
-                    $time_data = [
-                        "ip" => ip2long($this->input->server("REMOTE_ADDR")),
-                        "logged_at" => date("Y-m-d H:i:s"),
-                        "id_user" => $login_data->id
-                    ];
+                if (password_verify($user_login_data["password"], $login_data->password)) {
 
-                    $id_time = $this->Users->setLoginTime($time_data);
+                    $id_time = $this->Users->setLoginTime(
+                            [
+                                "ip" => ip2long($this->input->server("REMOTE_ADDR")),
+                                "logged_at" => date("Y-m-d H:i:s"),
+                                "id_user" => $login_data->id
+                    ]);
 
-                    $logged_in = [
+                    $this->session->set_userdata(
+                            "logged_in", [
                         "id_time" => $id_time,
                         "login" => $login_data->login,
                         "email" => $login_data->email,
                         "id" => $login_data->id
-                    ];
-                    $this->session->set_userdata("logged_in", $logged_in);
-
-                    $message["last_login_data"] = $this->Users->getLoginTime($login_data->id, limit);
-                    $message["username"] = $login_data->login;
-                    $template = "lastLogin";
+                    ]);
                 } else {
                     $message = [
                         "error_text" => "Wrong password"
@@ -135,7 +130,7 @@ class Login extends CI_Controller {
         } else {
             $this->form_validation->set_error_delimiters("<div class = 'text-danger'>", "</div>");
         }
-        $this->loadTemplateView($template, $message);
+        $this->getUserLoginTime($template, $message);
     }
 
     public function logoutUser() {
